@@ -1,0 +1,738 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Md. Touhid Ahmed | Digital Marketing Portfolio</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* CSS Reset and Variables */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --primary: #3a86ff;
+      --primary-dark: #2667cc;
+      --secondary: #8338ec;
+      --accent: #ff006e;
+      --dark: #1a1a2e;
+      --light: #f8f9fa;
+      --gray: #6c757d;
+      --glass: rgba(255, 255, 255, 0.1);
+      --glass-border: rgba(255, 255, 255, 0.2);
+      --shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+      --transition: all 0.3s ease;
+      --border-radius: 12px;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      line-height: 1.6;
+      color: var(--dark);
+      background-color: #f5f7ff;
+      overflow-x: hidden;
+      scroll-behavior: smooth;
+    }
+
+    .section {
+      padding: 100px 20px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    h2 {
+      font-size: 2.8rem;
+      margin-bottom: 3rem;
+      text-align: center;
+      position: relative;
+      color: var(--dark);
+    }
+
+    h2::after {
+      content: '';
+      position: absolute;
+      bottom: -15px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100px;
+      height: 4px;
+      background: linear-gradient(to right, var(--primary), var(--secondary));
+      border-radius: 2px;
+    }
+
+    /* Loader */
+    #loader {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: var(--dark);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+      transition: opacity 0.5s ease, visibility 0.5s ease;
+    }
+
+    .spinner {
+      width: 60px;
+      height: 60px;
+      border: 5px solid rgba(255, 255, 255, 0.2);
+      border-top: 5px solid var(--primary);
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    /* Progress Bar */
+    #progress-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 0%;
+      height: 4px;
+      background: linear-gradient(to right, var(--primary), var(--secondary));
+      z-index: 9998;
+      transition: width 0.1s ease;
+    }
+
+    /* Hero Section */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+      text-align: center;
+      color: white;
+      padding: 20px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(58, 134, 255, 0.1) 0%, transparent 70%);
+      top: -50%;
+      left: -50%;
+      animation: pulse 8s infinite alternate;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); opacity: 0.5; }
+      100% { transform: scale(1.2); opacity: 0.8; }
+    }
+
+    .hero-content h1 {
+      font-size: 4rem;
+      font-weight: 700;
+      margin-bottom: 1.5rem;
+      letter-spacing: -0.5px;
+      opacity: 0;
+      transform: translateY(30px);
+      animation: fadeInUp 1s forwards 0.5s;
+    }
+
+    @keyframes fadeInUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .typing {
+      font-size: 1.8rem;
+      margin-bottom: 3rem;
+      min-height: 2.2rem;
+      color: #e0e0ff;
+      position: relative;
+    }
+
+    .typing::after {
+      content: '|';
+      animation: blink 1s infinite;
+      font-weight: 300;
+      margin-left: 5px;
+    }
+
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0; }
+    }
+
+    .buttons {
+      display: flex;
+      justify-content: center;
+      gap: 25px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      padding: 16px 40px;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1.1rem;
+      transition: var(--transition);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      letter-spacing: 0.5px;
+      position: relative;
+      overflow: hidden;
+      z-index: 1;
+      min-width: 180px;
+    }
+
+    .btn:before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 0%;
+      height: 100%;
+      background: var(--accent);
+      transition: var(--transition);
+      z-index: -1;
+    }
+
+    .btn:hover:before {
+      width: 100%;
+    }
+
+    .btn {
+      background: var(--primary);
+      color: white;
+      border: 2px solid var(--primary);
+    }
+
+    .btn.outline {
+      background: transparent;
+      color: white;
+      border: 2px solid white;
+    }
+
+    .btn.outline:hover {
+      color: var(--dark);
+      border-color: var(--accent);
+    }
+
+    .btn:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Glass Effect */
+    .glass {
+      background: var(--glass);
+      backdrop-filter: blur(12px);
+      border-radius: var(--border-radius);
+      border: 1px solid var(--glass-border);
+      box-shadow: var(--shadow);
+      padding: 50px 40px;
+      margin-bottom: 40px;
+    }
+
+    /* Cards */
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 30px;
+      margin-top: 40px;
+    }
+
+    .card {
+      background: white;
+      border-radius: var(--border-radius);
+      padding: 40px 30px;
+      text-align: center;
+      box-shadow: var(--shadow);
+      transition: var(--transition);
+      border: 1px solid rgba(0, 0, 0, 0.05);
+      position: relative;
+      overflow: hidden;
+      z-index: 1;
+    }
+
+    .card:before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 5px;
+      background: linear-gradient(to right, var(--primary), var(--secondary));
+      z-index: 2;
+    }
+
+    .card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+    }
+
+    .card:nth-child(2):hover {
+      transform: translateY(-10px) rotate(2deg);
+    }
+
+    .card:nth-child(3):hover {
+      transform: translateY(-10px) rotate(-2deg);
+    }
+
+    .card:nth-child(4):hover {
+      transform: translateY(-10px) scale(1.02);
+    }
+
+    /* Contact Cards */
+    .contact-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+      max-width: 800px;
+      margin: 40px auto 0;
+    }
+
+    .contact-card {
+      background: white;
+      border-radius: var(--border-radius);
+      padding: 35px 30px;
+      text-align: center;
+      box-shadow: var(--shadow);
+      transition: var(--transition);
+      border: 1px solid rgba(0, 0, 0, 0.05);
+      cursor: pointer;
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: var(--dark);
+      position: relative;
+      overflow: hidden;
+      z-index: 1;
+    }
+
+    .contact-card:before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 0%;
+      height: 100%;
+      background: linear-gradient(to right, var(--primary), var(--secondary));
+      transition: var(--transition);
+      z-index: -1;
+    }
+
+    .contact-card:hover:before {
+      width: 100%;
+    }
+
+    .contact-card:hover {
+      transform: translateY(-5px);
+      color: white;
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Footer */
+    footer {
+      background: var(--dark);
+      color: white;
+      text-align: center;
+      padding: 40px 20px;
+      margin-top: 80px;
+      font-size: 1.1rem;
+    }
+
+    /* Back to Top Button */
+    #topBtn {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      width: 55px;
+      height: 55px;
+      border-radius: 50%;
+      background: var(--primary);
+      color: white;
+      border: none;
+      cursor: pointer;
+      font-size: 1.5rem;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 5px 20px rgba(58, 134, 255, 0.4);
+      transition: var(--transition);
+      z-index: 100;
+    }
+
+    #topBtn:hover {
+      background: var(--secondary);
+      transform: translateY(-5px);
+    }
+
+    /* Scroll Animation */
+    .reveal {
+      opacity: 0;
+      transform: translateY(50px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Text Animation */
+    .reveal-text {
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Responsive Styles */
+    @media (max-width: 992px) {
+      .hero-content h1 {
+        font-size: 3.2rem;
+      }
+      
+      h2 {
+        font-size: 2.5rem;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .hero-content h1 {
+        font-size: 2.5rem;
+      }
+      
+      .typing {
+        font-size: 1.5rem;
+      }
+      
+      .buttons {
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+      }
+      
+      .btn {
+        width: 100%;
+        max-width: 280px;
+      }
+      
+      h2 {
+        font-size: 2.2rem;
+      }
+      
+      .section {
+        padding: 80px 20px;
+      }
+      
+      .card-grid {
+        grid-template-columns: 1fr;
+        gap: 25px;
+      }
+      
+      .contact-cards {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .hero-content h1 {
+        font-size: 2rem;
+      }
+      
+      .typing {
+        font-size: 1.2rem;
+      }
+      
+      h2 {
+        font-size: 1.8rem;
+      }
+      
+      .glass {
+        padding: 40px 25px;
+      }
+      
+      .card {
+        padding: 30px 25px;
+      }
+    }
+
+    /* Additional Styling */
+    .section:nth-child(even) {
+      background-color: #f0f3ff;
+    }
+
+    .card i {
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+      color: var(--primary);
+    }
+
+    .card h3 {
+      margin-bottom: 15px;
+      color: var(--dark);
+    }
+
+    .card p {
+      color: var(--gray);
+    }
+  </style>
+</head>
+<body>
+
+<!-- Loader -->
+<div id="loader">
+  <div class="spinner"></div>
+</div>
+
+<!-- Scroll Progress -->
+<div id="progress-bar"></div>
+
+<!-- Hero -->
+<section class="hero">
+  <div class="hero-content">
+    <h1 class="reveal-text">Md. Touhid Ahmed</h1>
+    <p class="typing"></p>
+    <div class="buttons">
+      <a href="#contact" class="btn">Contact Me</a>
+      <a href="#about" class="btn outline">Hire Me</a>
+    </div>
+  </div>
+</section>
+
+<!-- About -->
+<section id="about" class="section glass reveal">
+  <h2>About Me</h2>
+  <div style="max-width: 800px; margin: 0 auto; text-align: center;">
+    <p style="font-size: 1.3rem; line-height: 1.8; margin-bottom: 30px;">
+      I'm <b style="color: var(--primary);">Md. Touhid Ahmed</b>, a passionate digital marketing professional with expertise in modern marketing strategies and data-driven campaigns. Currently specializing in <b style="color: var(--secondary);">Digital Marketing</b> at <b style="color: var(--primary);">UY Lab</b>, I combine analytical skills with creative approaches to deliver exceptional results.
+    </p>
+    <div style="display: flex; justify-content: center; margin-top: 40px;">
+      <div style="background: linear-gradient(135deg, var(--primary), var(--secondary)); padding: 15px 30px; border-radius: 50px; color: white; font-weight: 600; display: inline-flex; align-items: center; gap: 10px;">
+        <i class="fas fa-graduation-cap"></i>
+        <span>UY Lab Digital Marketing Program</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Skills -->
+<section class="section reveal">
+  <h2>My Skills</h2>
+  <div class="card-grid">
+    <div class="card">
+      <i class="fas fa-hashtag"></i>
+      <h3>Social Media Marketing</h3>
+      <p>Strategic planning, content creation, and audience engagement across all major social platforms to build brand presence and drive conversions.</p>
+    </div>
+    <div class="card">
+      <i class="fas fa-search"></i>
+      <h3>SEO</h3>
+      <p>Technical and on-page optimization, keyword research, and link building strategies to improve search rankings and organic visibility.</p>
+    </div>
+    <div class="card">
+      <i class="fas fa-handshake"></i>
+      <h3>Affiliate Marketing</h3>
+      <p>Building and managing affiliate networks, tracking performance, and optimizing campaigns for maximum ROI and partnership growth.</p>
+    </div>
+    <div class="card">
+      <i class="fas fa-envelope"></i>
+      <h3>Email Marketing</h3>
+      <p>Designing effective email campaigns, automation workflows, and segmentation strategies to nurture leads and retain customers.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Contact -->
+<section id="contact" class="section glass reveal">
+  <h2>Contact</h2>
+  <div class="contact-cards">
+    <div class="contact-card" onclick="copyText('mdtouhidahamedsahid6@gmail.com')">
+      <i class="fas fa-envelope" style="margin-right: 10px;"></i>
+      mdtouhidahamedsahid6@gmail.com
+    </div>
+    <div class="contact-card" onclick="copyText('01966783646')">
+      <i class="fas fa-phone" style="margin-right: 10px;"></i>
+      01966783646
+    </div>
+  </div>
+  <p style="text-align: center; margin-top: 30px; color: var(--gray); font-style: italic;">
+    Click on a contact method to copy it to your clipboard
+  </p>
+</section>
+
+<footer>
+  © 2026 Md. Touhid Ahmed • Premium Digital Marketing Portfolio
+</footer>
+
+<button id="topBtn">↑</button>
+
+<script>
+  // Loader
+  window.addEventListener('load', function() {
+    const loader = document.getElementById('loader');
+    setTimeout(() => {
+      loader.style.opacity = '0';
+      loader.style.visibility = 'hidden';
+    }, 1000);
+  });
+
+  // Scroll Progress Bar
+  window.addEventListener('scroll', function() {
+    const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+    const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+    const scrollPercentage = (scrollTop / scrollHeight) * 100;
+    document.getElementById('progress-bar').style.width = scrollPercentage + '%';
+  });
+
+  // Typing Effect
+  const typingText = document.querySelector('.typing');
+  const texts = [
+    "Digital Marketing Specialist",
+    "SEO & Social Media Expert",
+    "Marketing Strategy Consultant"
+  ];
+  let textIndex = 0;
+  let charIndex = 0;
+  let isDeleting = false;
+  let typingSpeed = 100;
+
+  function typeText() {
+    const currentText = texts[textIndex];
+    
+    if (isDeleting) {
+      typingText.textContent = currentText.substring(0, charIndex - 1);
+      charIndex--;
+      typingSpeed = 50;
+    } else {
+      typingText.textContent = currentText.substring(0, charIndex + 1);
+      charIndex++;
+      typingSpeed = 100;
+    }
+
+    if (!isDeleting && charIndex === currentText.length) {
+      isDeleting = true;
+      setTimeout(typeText, 2000);
+      return;
+    }
+
+    if (isDeleting && charIndex === 0) {
+      isDeleting = false;
+      textIndex = (textIndex + 1) % texts.length;
+      setTimeout(typeText, 500);
+      return;
+    }
+
+    setTimeout(typeText, typingSpeed);
+  }
+
+  // Start typing effect after page loads
+  window.addEventListener('load', () => {
+    setTimeout(typeText, 1200);
+  });
+
+  // Scroll to Top Button
+  const topBtn = document.getElementById('topBtn');
+  window.addEventListener('scroll', () => {
+    if (window.pageYOffset > 300) {
+      topBtn.style.display = 'flex';
+    } else {
+      topBtn.style.display = 'none';
+    }
+  });
+
+  topBtn.addEventListener('click', () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  });
+
+  // Scroll Animation
+  const revealElements = document.querySelectorAll('.reveal');
+  function revealOnScroll() {
+    revealElements.forEach(element => {
+      const elementTop = element.getBoundingClientRect().top;
+      const elementVisible = 150;
+      
+      if (elementTop < window.innerHeight - elementVisible) {
+        element.classList.add('visible');
+      }
+    });
+  }
+
+  window.addEventListener('scroll', revealOnScroll);
+  window.addEventListener('load', revealOnScroll);
+
+  // Copy to Clipboard Function
+  function copyText(text) {
+    navigator.clipboard.writeText(text).then(() => {
+      // Show notification
+      const notification = document.createElement('div');
+      notification.textContent = `Copied: ${text}`;
+      notification.style.cssText = `
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        background: var(--primary);
+        color: white;
+        padding: 15px 25px;
+        border-radius: 10px;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        z-index: 1000;
+        font-weight: 600;
+        transition: all 0.3s ease;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      `;
+      
+      const icon = document.createElement('i');
+      icon.className = 'fas fa-check-circle';
+      notification.prepend(icon);
+      
+      document.body.appendChild(notification);
+      
+      setTimeout(() => {
+        notification.style.opacity = '0';
+        notification.style.transform = 'translateY(-10px)';
+        setTimeout(() => {
+          document.body.removeChild(notification);
+        }, 300);
+      }, 2000);
+    }).catch(err => {
+      console.error('Failed to copy: ', err);
+      alert('Failed to copy text. Please try again.');
+    });
+  }
+
+  // Smooth scroll for anchor links
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+      e.preventDefault();
+      const targetId = this.getAttribute('href');
+      if (targetId === '#') return;
+      
+      const targetElement = document.querySelector(targetId);
+      if (targetElement) {
+        window.scrollTo({
+          top: targetElement.offsetTop - 80,
+          behavior: 'smooth'
+        });
+      }
+    });
+  });
+</script>
+</body>
+</html>
