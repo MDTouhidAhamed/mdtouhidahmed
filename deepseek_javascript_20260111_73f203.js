@@ -477,3 +477,73 @@ style.textContent = `
     }
 `;
 document.head.appendChild(style);
+// Social media card animations
+function initSocialMediaAnimations() {
+    const socialCards = document.querySelectorAll('.social-card');
+    
+    socialCards.forEach(card => {
+        card.addEventListener('mouseenter', function() {
+            // Add ripple effect
+            const ripple = document.createElement('span');
+            const rect = this.getBoundingClientRect();
+            const size = Math.max(rect.width, rect.height);
+            
+            ripple.style.width = ripple.style.height = size + 'px';
+            ripple.style.left = (event.clientX - rect.left - size/2) + 'px';
+            ripple.style.top = (event.clientY - rect.top - size/2) + 'px';
+            ripple.classList.add('ripple-effect');
+            
+            this.appendChild(ripple);
+            
+            // Remove ripple after animation
+            setTimeout(() => {
+                ripple.remove();
+            }, 600);
+        });
+    });
+    
+    // Initialize social media share counts (simulated)
+    updateSocialStats();
+}
+
+// Update social media stats (simulated for demo)
+function updateSocialStats() {
+    const stats = {
+        facebook: 850,
+        linkedin: 420,
+        instagram: 1200
+    };
+    
+    setTimeout(() => {
+        document.querySelectorAll('.social-card').forEach(card => {
+            if (card.classList.contains('facebook')) {
+                // Update Facebook stats
+            }
+            // Similar for other platforms
+        });
+    }, 2000);
+}
+
+// Add this to your DOMContentLoaded event listener
+initSocialMediaAnimations();
+
+// Add ripple effect CSS
+const rippleStyle = document.createElement('style');
+rippleStyle.textContent = `
+    .ripple-effect {
+        position: absolute;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.1);
+        transform: scale(0);
+        animation: ripple 0.6s linear;
+        pointer-events: none;
+    }
+    
+    @keyframes ripple {
+        to {
+            transform: scale(4);
+            opacity: 0;
+        }
+    }
+`;
+document.head.appendChild(rippleStyle);
