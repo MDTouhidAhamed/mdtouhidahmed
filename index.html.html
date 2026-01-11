@@ -1,738 +1,519 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Md. Touhid Ahmed | Digital Marketing Portfolio</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
-  <style>
-    /* CSS Reset and Variables */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    :root {
-      --primary: #3a86ff;
-      --primary-dark: #2667cc;
-      --secondary: #8338ec;
-      --accent: #ff006e;
-      --dark: #1a1a2e;
-      --light: #f8f9fa;
-      --gray: #6c757d;
-      --glass: rgba(255, 255, 255, 0.1);
-      --glass-border: rgba(255, 255, 255, 0.2);
-      --shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-      --transition: all 0.3s ease;
-      --border-radius: 12px;
-    }
-
-    body {
-      font-family: 'Inter', sans-serif;
-      line-height: 1.6;
-      color: var(--dark);
-      background-color: #f5f7ff;
-      overflow-x: hidden;
-      scroll-behavior: smooth;
-    }
-
-    .section {
-      padding: 100px 20px;
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-
-    h2 {
-      font-size: 2.8rem;
-      margin-bottom: 3rem;
-      text-align: center;
-      position: relative;
-      color: var(--dark);
-    }
-
-    h2::after {
-      content: '';
-      position: absolute;
-      bottom: -15px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 100px;
-      height: 4px;
-      background: linear-gradient(to right, var(--primary), var(--secondary));
-      border-radius: 2px;
-    }
-
-    /* Loader */
-    #loader {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: var(--dark);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      z-index: 9999;
-      transition: opacity 0.5s ease, visibility 0.5s ease;
-    }
-
-    .spinner {
-      width: 60px;
-      height: 60px;
-      border: 5px solid rgba(255, 255, 255, 0.2);
-      border-top: 5px solid var(--primary);
-      border-radius: 50%;
-      animation: spin 1s linear infinite;
-    }
-
-    @keyframes spin {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
-    }
-
-    /* Progress Bar */
-    #progress-bar {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 0%;
-      height: 4px;
-      background: linear-gradient(to right, var(--primary), var(--secondary));
-      z-index: 9998;
-      transition: width 0.1s ease;
-    }
-
-    /* Hero Section */
-    .hero {
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
-      text-align: center;
-      color: white;
-      padding: 20px;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .hero::before {
-      content: '';
-      position: absolute;
-      width: 200%;
-      height: 200%;
-      background: radial-gradient(circle, rgba(58, 134, 255, 0.1) 0%, transparent 70%);
-      top: -50%;
-      left: -50%;
-      animation: pulse 8s infinite alternate;
-    }
-
-    @keyframes pulse {
-      0% { transform: scale(1); opacity: 0.5; }
-      100% { transform: scale(1.2); opacity: 0.8; }
-    }
-
-    .hero-content h1 {
-      font-size: 4rem;
-      font-weight: 700;
-      margin-bottom: 1.5rem;
-      letter-spacing: -0.5px;
-      opacity: 0;
-      transform: translateY(30px);
-      animation: fadeInUp 1s forwards 0.5s;
-    }
-
-    @keyframes fadeInUp {
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    .typing {
-      font-size: 1.8rem;
-      margin-bottom: 3rem;
-      min-height: 2.2rem;
-      color: #e0e0ff;
-      position: relative;
-    }
-
-    .typing::after {
-      content: '|';
-      animation: blink 1s infinite;
-      font-weight: 300;
-      margin-left: 5px;
-    }
-
-    @keyframes blink {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0; }
-    }
-
-    .buttons {
-      display: flex;
-      justify-content: center;
-      gap: 25px;
-      flex-wrap: wrap;
-    }
-
-    .btn {
-      padding: 16px 40px;
-      border-radius: 50px;
-      text-decoration: none;
-      font-weight: 600;
-      font-size: 1.1rem;
-      transition: var(--transition);
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      letter-spacing: 0.5px;
-      position: relative;
-      overflow: hidden;
-      z-index: 1;
-      min-width: 180px;
-    }
-
-    .btn:before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 0%;
-      height: 100%;
-      background: var(--accent);
-      transition: var(--transition);
-      z-index: -1;
-    }
-
-    .btn:hover:before {
-      width: 100%;
-    }
-
-    .btn {
-      background: var(--primary);
-      color: white;
-      border: 2px solid var(--primary);
-    }
-
-    .btn.outline {
-      background: transparent;
-      color: white;
-      border: 2px solid white;
-    }
-
-    .btn.outline:hover {
-      color: var(--dark);
-      border-color: var(--accent);
-    }
-
-    .btn:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
-    }
-
-    /* Glass Effect */
-    .glass {
-      background: var(--glass);
-      backdrop-filter: blur(12px);
-      border-radius: var(--border-radius);
-      border: 1px solid var(--glass-border);
-      box-shadow: var(--shadow);
-      padding: 50px 40px;
-      margin-bottom: 40px;
-    }
-
-    /* Cards */
-    .card-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-      gap: 30px;
-      margin-top: 40px;
-    }
-
-    .card {
-      background: white;
-      border-radius: var(--border-radius);
-      padding: 40px 30px;
-      text-align: center;
-      box-shadow: var(--shadow);
-      transition: var(--transition);
-      border: 1px solid rgba(0, 0, 0, 0.05);
-      position: relative;
-      overflow: hidden;
-      z-index: 1;
-    }
-
-    .card:before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 5px;
-      background: linear-gradient(to right, var(--primary), var(--secondary));
-      z-index: 2;
-    }
-
-    .card:hover {
-      transform: translateY(-10px);
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
-    }
-
-    .card:nth-child(2):hover {
-      transform: translateY(-10px) rotate(2deg);
-    }
-
-    .card:nth-child(3):hover {
-      transform: translateY(-10px) rotate(-2deg);
-    }
-
-    .card:nth-child(4):hover {
-      transform: translateY(-10px) scale(1.02);
-    }
-
-    /* Contact Cards */
-    .contact-cards {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 30px;
-      max-width: 800px;
-      margin: 40px auto 0;
-    }
-
-    .contact-card {
-      background: white;
-      border-radius: var(--border-radius);
-      padding: 35px 30px;
-      text-align: center;
-      box-shadow: var(--shadow);
-      transition: var(--transition);
-      border: 1px solid rgba(0, 0, 0, 0.05);
-      cursor: pointer;
-      font-size: 1.2rem;
-      font-weight: 600;
-      color: var(--dark);
-      position: relative;
-      overflow: hidden;
-      z-index: 1;
-    }
-
-    .contact-card:before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 0%;
-      height: 100%;
-      background: linear-gradient(to right, var(--primary), var(--secondary));
-      transition: var(--transition);
-      z-index: -1;
-    }
-
-    .contact-card:hover:before {
-      width: 100%;
-    }
-
-    .contact-card:hover {
-      transform: translateY(-5px);
-      color: white;
-      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
-    }
-
-    /* Footer */
-    footer {
-      background: var(--dark);
-      color: white;
-      text-align: center;
-      padding: 40px 20px;
-      margin-top: 80px;
-      font-size: 1.1rem;
-    }
-
-    /* Back to Top Button */
-    #topBtn {
-      position: fixed;
-      bottom: 30px;
-      right: 30px;
-      width: 55px;
-      height: 55px;
-      border-radius: 50%;
-      background: var(--primary);
-      color: white;
-      border: none;
-      cursor: pointer;
-      font-size: 1.5rem;
-      display: none;
-      align-items: center;
-      justify-content: center;
-      box-shadow: 0 5px 20px rgba(58, 134, 255, 0.4);
-      transition: var(--transition);
-      z-index: 100;
-    }
-
-    #topBtn:hover {
-      background: var(--secondary);
-      transform: translateY(-5px);
-    }
-
-    /* Scroll Animation */
-    .reveal {
-      opacity: 0;
-      transform: translateY(50px);
-      transition: opacity 0.8s ease, transform 0.8s ease;
-    }
-
-    .reveal.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    /* Text Animation */
-    .reveal-text {
-      position: relative;
-      overflow: hidden;
-    }
-
-    /* Responsive Styles */
-    @media (max-width: 992px) {
-      .hero-content h1 {
-        font-size: 3.2rem;
-      }
-      
-      h2 {
-        font-size: 2.5rem;
-      }
-    }
-
-    @media (max-width: 768px) {
-      .hero-content h1 {
-        font-size: 2.5rem;
-      }
-      
-      .typing {
-        font-size: 1.5rem;
-      }
-      
-      .buttons {
-        flex-direction: column;
-        align-items: center;
-        gap: 20px;
-      }
-      
-      .btn {
-        width: 100%;
-        max-width: 280px;
-      }
-      
-      h2 {
-        font-size: 2.2rem;
-      }
-      
-      .section {
-        padding: 80px 20px;
-      }
-      
-      .card-grid {
-        grid-template-columns: 1fr;
-        gap: 25px;
-      }
-      
-      .contact-cards {
-        grid-template-columns: 1fr;
-      }
-    }
-
-    @media (max-width: 480px) {
-      .hero-content h1 {
-        font-size: 2rem;
-      }
-      
-      .typing {
-        font-size: 1.2rem;
-      }
-      
-      h2 {
-        font-size: 1.8rem;
-      }
-      
-      .glass {
-        padding: 40px 25px;
-      }
-      
-      .card {
-        padding: 30px 25px;
-      }
-    }
-
-    /* Additional Styling */
-    .section:nth-child(even) {
-      background-color: #f0f3ff;
-    }
-
-    .card i {
-      font-size: 2.5rem;
-      margin-bottom: 20px;
-      color: var(--primary);
-    }
-
-    .card h3 {
-      margin-bottom: 15px;
-      color: var(--dark);
-    }
-
-    .card p {
-      color: var(--gray);
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Md. Touhid Ahmed | Digital Marketing Specialist</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 </head>
 <body>
-
-<!-- Loader -->
-<div id="loader">
-  <div class="spinner"></div>
-</div>
-
-<!-- Scroll Progress -->
-<div id="progress-bar"></div>
-
-<!-- Hero -->
-<section class="hero">
-  <div class="hero-content">
-    <h1 class="reveal-text">Md. Touhid Ahmed</h1>
-    <p class="typing"></p>
-    <div class="buttons">
-      <a href="#contact" class="btn">Contact Me</a>
-      <a href="#about" class="btn outline">Hire Me</a>
+    <!-- Preloader -->
+    <div class="preloader">
+        <div class="preloader-content">
+            <div class="preloader-logo">
+                <div class="logo-circle"></div>
+                <div class="logo-circle"></div>
+                <div class="logo-circle"></div>
+            </div>
+            <div class="preloader-text">
+                <span class="loading-text">Loading</span>
+                <span class="loading-dots">...</span>
+            </div>
+        </div>
     </div>
-  </div>
-</section>
 
-<!-- About -->
-<section id="about" class="section glass reveal">
-  <h2>About Me</h2>
-  <div style="max-width: 800px; margin: 0 auto; text-align: center;">
-    <p style="font-size: 1.3rem; line-height: 1.8; margin-bottom: 30px;">
-      I'm <b style="color: var(--primary);">Md. Touhid Ahmed</b>, a passionate digital marketing professional with expertise in modern marketing strategies and data-driven campaigns. Currently specializing in <b style="color: var(--secondary);">Digital Marketing</b> at <b style="color: var(--primary);">UY Lab</b>, I combine analytical skills with creative approaches to deliver exceptional results.
-    </p>
-    <div style="display: flex; justify-content: center; margin-top: 40px;">
-      <div style="background: linear-gradient(135deg, var(--primary), var(--secondary)); padding: 15px 30px; border-radius: 50px; color: white; font-weight: 600; display: inline-flex; align-items: center; gap: 10px;">
-        <i class="fas fa-graduation-cap"></i>
-        <span>UY Lab Digital Marketing Program</span>
-      </div>
+    <!-- Scroll Progress Indicator -->
+    <div class="scroll-progress"></div>
+
+    <!-- Custom Cursor -->
+    <div class="cursor-dot"></div>
+    <div class="cursor-outline"></div>
+
+    <!-- Animated Background Shapes -->
+    <div class="background-shapes">
+        <div class="shape shape-1"></div>
+        <div class="shape shape-2"></div>
+        <div class="shape shape-3"></div>
+        <div class="shape shape-4"></div>
     </div>
-  </div>
-</section>
 
-<!-- Skills -->
-<section class="section reveal">
-  <h2>My Skills</h2>
-  <div class="card-grid">
-    <div class="card">
-      <i class="fas fa-hashtag"></i>
-      <h3>Social Media Marketing</h3>
-      <p>Strategic planning, content creation, and audience engagement across all major social platforms to build brand presence and drive conversions.</p>
-    </div>
-    <div class="card">
-      <i class="fas fa-search"></i>
-      <h3>SEO</h3>
-      <p>Technical and on-page optimization, keyword research, and link building strategies to improve search rankings and organic visibility.</p>
-    </div>
-    <div class="card">
-      <i class="fas fa-handshake"></i>
-      <h3>Affiliate Marketing</h3>
-      <p>Building and managing affiliate networks, tracking performance, and optimizing campaigns for maximum ROI and partnership growth.</p>
-    </div>
-    <div class="card">
-      <i class="fas fa-envelope"></i>
-      <h3>Email Marketing</h3>
-      <p>Designing effective email campaigns, automation workflows, and segmentation strategies to nurture leads and retain customers.</p>
-    </div>
-  </div>
-</section>
+    <!-- Header & Navigation -->
+    <header class="header">
+        <nav class="navbar">
+            <div class="nav-container">
+                <a href="#" class="logo">Touhid<span class="logo-accent">.</span></a>
+                
+                <div class="nav-menu">
+                    <ul class="nav-list">
+                        <li class="nav-item"><a href="#home" class="nav-link active">Home</a></li>
+                        <li class="nav-item"><a href="#about" class="nav-link">About</a></li>
+                        <li class="nav-item"><a href="#skills" class="nav-link">Skills</a></li>
+                        <li class="nav-item"><a href="#services" class="nav-link">Services</a></li>
+                        <li class="nav-item"><a href="#portfolio" class="nav-link">Experience</a></li>
+                        <li class="nav-item"><a href="#contact" class="nav-link">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="nav-cta">
+                    <a href="#contact" class="btn btn-outline">Hire Me</a>
+                </div>
+                
+                <div class="hamburger">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
+            </div>
+        </nav>
+    </header>
 
-<!-- Contact -->
-<section id="contact" class="section glass reveal">
-  <h2>Contact</h2>
-  <div class="contact-cards">
-    <div class="contact-card" onclick="copyText('mdtouhidahamedsahid6@gmail.com')">
-      <i class="fas fa-envelope" style="margin-right: 10px;"></i>
-      mdtouhidahamedsahid6@gmail.com
-    </div>
-    <div class="contact-card" onclick="copyText('01966783646')">
-      <i class="fas fa-phone" style="margin-right: 10px;"></i>
-      01966783646
-    </div>
-  </div>
-  <p style="text-align: center; margin-top: 30px; color: var(--gray); font-style: italic;">
-    Click on a contact method to copy it to your clipboard
-  </p>
-</section>
+    <!-- Main Content -->
+    <main>
+        <!-- Hero Section -->
+        <section id="home" class="hero">
+            <div class="hero-container">
+                <div class="hero-content">
+                    <div class="hero-badge">
+                        <span class="badge-text">Digital Marketing Specialist</span>
+                        <div class="badge-glow"></div>
+                    </div>
+                    
+                    <h1 class="hero-title">
+                        <span class="title-line">Md. <span class="gradient-text">Touhid</span> Ahmed</span>
+                    </h1>
+                    
+                    <p class="hero-subtitle">
+                        Student at <span class="highlight">UY Lab</span> | Transforming brands through data-driven digital strategies and innovative marketing solutions.
+                    </p>
+                    
+                    <div class="hero-cta">
+                        <a href="#contact" class="btn btn-primary">
+                            <span class="btn-text">Contact Me</span>
+                            <div class="btn-glow"></div>
+                        </a>
+                        <a href="#portfolio" class="btn btn-secondary">
+                            <span class="btn-text">View Experience</span>
+                        </a>
+                    </div>
+                    
+                    <div class="hero-stats">
+                        <div class="stat">
+                            <div class="stat-number" data-count="50">0</div>
+                            <div class="stat-label">Projects</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-number" data-count="95">0</div>
+                            <div class="stat-label">Satisfaction</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-number" data-count="3">0</div>
+                            <div class="stat-label">Years</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="hero-visual">
+                    <div class="hero-card">
+                        <div class="card-inner">
+                            <div class="profile-image">
+                                <div class="image-placeholder">
+                                    <div class="image-glow"></div>
+                                    <i class="fas fa-user-circle"></i>
+                                </div>
+                            </div>
+                            <div class="profile-info">
+                                <h3 class="profile-name">Touhid Ahmed</h3>
+                                <p class="profile-title">Digital Marketing Student</p>
+                                <div class="profile-location">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                    <span>UY Lab Institute</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-glow"></div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="scroll-indicator">
+                <div class="scroll-line"></div>
+                <span class="scroll-text">Scroll Down</span>
+            </div>
+        </section>
 
-<footer>
-  © 2026 Md. Touhid Ahmed • Premium Digital Marketing Portfolio
-</footer>
+        <!-- About Section -->
+        <section id="about" class="section about">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">
+                        <span class="section-number">01</span>
+                        <span>About Me</span>
+                    </h2>
+                    <p class="section-subtitle">Get to know the person behind the strategies</p>
+                </div>
+                
+                <div class="about-content">
+                    <div class="about-image">
+                        <div class="image-container">
+                            <div class="image-frame"></div>
+                            <div class="image-overlay">
+                                <div class="overlay-text">
+                                    <h3>Digital Marketing</h3>
+                                    <p>Student & Specialist</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="about-text">
+                        <h3 class="about-title">Crafting Digital Success Stories</h3>
+                        <p class="about-description">
+                            I'm a passionate Digital Marketing student at UY Lab with a keen interest in transforming businesses through data-driven marketing strategies. My approach combines analytical thinking with creative execution to deliver measurable results.
+                        </p>
+                        <p class="about-description">
+                            With hands-on experience in various digital marketing channels, I specialize in creating campaigns that not only look great but also drive conversions and ROI. My academic background provides me with both theoretical knowledge and practical skills to excel in the dynamic digital landscape.
+                        </p>
+                        
+                        <div class="about-highlights">
+                            <div class="highlight-item">
+                                <div class="highlight-icon">
+                                    <i class="fas fa-bullseye"></i>
+                                </div>
+                                <div class="highlight-content">
+                                    <h4>Strategic Mindset</h4>
+                                    <p>Data-driven decision making for optimal results</p>
+                                </div>
+                            </div>
+                            <div class="highlight-item">
+                                <div class="highlight-icon">
+                                    <i class="fas fa-chart-line"></i>
+                                </div>
+                                <div class="highlight-content">
+                                    <h4>Growth Focused</h4>
+                                    <p>Driving measurable business growth through digital channels</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-<button id="topBtn">↑</button>
+        <!-- Skills Section -->
+        <section id="skills" class="section skills">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">
+                        <span class="section-number">02</span>
+                        <span>My Skills</span>
+                    </h2>
+                    <p class="section-subtitle">Specialized expertise across digital marketing disciplines</p>
+                </div>
+                
+                <div class="skills-container">
+                    <div class="skill-card">
+                        <div class="skill-header">
+                            <div class="skill-icon">
+                                <i class="fab fa-facebook-square"></i>
+                            </div>
+                            <h3 class="skill-title">Social Media Marketing</h3>
+                        </div>
+                        <div class="skill-progress">
+                            <div class="progress-track">
+                                <div class="progress-fill" data-width="92"></div>
+                            </div>
+                            <div class="progress-percent">92%</div>
+                        </div>
+                        <p class="skill-description">Strategic social media campaigns, content creation, community management, and paid advertising across all major platforms.</p>
+                    </div>
+                    
+                    <div class="skill-card">
+                        <div class="skill-header">
+                            <div class="skill-icon">
+                                <i class="fas fa-search"></i>
+                            </div>
+                            <h3 class="skill-title">SEO</h3>
+                        </div>
+                        <div class="skill-progress">
+                            <div class="progress-track">
+                                <div class="progress-fill" data-width="88"></div>
+                            </div>
+                            <div class="progress-percent">88%</div>
+                        </div>
+                        <p class="skill-description">On-page & off-page optimization, keyword research, technical SEO audits, and content strategy for improved search visibility.</p>
+                    </div>
+                    
+                    <div class="skill-card">
+                        <div class="skill-header">
+                            <div class="skill-icon">
+                                <i class="fas fa-handshake"></i>
+                            </div>
+                            <h3 class="skill-title">Affiliate Marketing</h3>
+                        </div>
+                        <div class="skill-progress">
+                            <div class="progress-track">
+                                <div class="progress-fill" data-width="85"></div>
+                            </div>
+                            <div class="progress-percent">85%</div>
+                        </div>
+                        <p class="skill-description">Affiliate program management, partnership development, commission optimization, and performance tracking.</p>
+                    </div>
+                    
+                    <div class="skill-card">
+                        <div class="skill-header">
+                            <div class="skill-icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <h3 class="skill-title">Email Marketing</h3>
+                        </div>
+                        <div class="skill-progress">
+                            <div class="progress-track">
+                                <div class="progress-fill" data-width="90"></div>
+                            </div>
+                            <div class="progress-percent">90%</div>
+                        </div>
+                        <p class="skill-description">Email campaign strategy, automation workflows, list segmentation, A/B testing, and conversion optimization.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-<script>
-  // Loader
-  window.addEventListener('load', function() {
-    const loader = document.getElementById('loader');
-    setTimeout(() => {
-      loader.style.opacity = '0';
-      loader.style.visibility = 'hidden';
-    }, 1000);
-  });
+        <!-- Services Section -->
+        <section id="services" class="section services">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">
+                        <span class="section-number">03</span>
+                        <span>My Services</span>
+                    </h2>
+                    <p class="section-subtitle">Comprehensive digital marketing solutions tailored to your business needs</p>
+                </div>
+                
+                <div class="services-container">
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-bullhorn"></i>
+                            <div class="icon-glow"></div>
+                        </div>
+                        <h3 class="service-title">Social Media Management</h3>
+                        <p class="service-description">Complete social media strategy, content creation, scheduling, and performance analytics to grow your online presence.</p>
+                        <ul class="service-features">
+                            <li><i class="fas fa-check"></i> Content Strategy</li>
+                            <li><i class="fas fa-check"></i> Community Engagement</li>
+                            <li><i class="fas fa-check"></i> Paid Campaign Management</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-search"></i>
+                            <div class="icon-glow"></div>
+                        </div>
+                        <h3 class="service-title">Search Engine Optimization</h3>
+                        <p class="service-description">Improve your website's visibility in search results through comprehensive on-page and off-page SEO strategies.</p>
+                        <ul class="service-features">
+                            <li><i class="fas fa-check"></i> Keyword Research</li>
+                            <li><i class="fas fa-check"></i> Technical SEO Audits</li>
+                            <li><i class="fas fa-check"></i> Content Optimization</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-chart-pie"></i>
+                            <div class="icon-glow"></div>
+                        </div>
+                        <h3 class="service-title">Digital Strategy</h3>
+                        <p class="service-description">Data-driven marketing strategies tailored to your business goals, target audience, and competitive landscape.</p>
+                        <ul class="service-features">
+                            <li><i class="fas fa-check"></i> Market Analysis</li>
+                            <li><i class="fas fa-check"></i> Campaign Planning</li>
+                            <li><i class="fas fa-check"></i> Performance Tracking</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-  // Scroll Progress Bar
-  window.addEventListener('scroll', function() {
-    const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
-    const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-    const scrollPercentage = (scrollTop / scrollHeight) * 100;
-    document.getElementById('progress-bar').style.width = scrollPercentage + '%';
-  });
+        <!-- Portfolio/Experience Section -->
+        <section id="portfolio" class="section portfolio">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">
+                        <span class="section-number">04</span>
+                        <span>Experience & Projects</span>
+                    </h2>
+                    <p class="section-subtitle">A showcase of my digital marketing journey and accomplishments</p>
+                </div>
+                
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-date">2023 - Present</div>
+                        <div class="timeline-content">
+                            <h3 class="timeline-title">Digital Marketing Student</h3>
+                            <p class="timeline-subtitle">UY Lab Institute</p>
+                            <p class="timeline-description">Comprehensive digital marketing education covering SEO, social media marketing, content strategy, analytics, and campaign management.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-date">2022 - 2023</div>
+                        <div class="timeline-content">
+                            <h3 class="timeline-title">Social Media Campaigns</h3>
+                            <p class="timeline-subtitle">Freelance Projects</p>
+                            <p class="timeline-description">Managed multiple social media campaigns for local businesses, achieving an average 40% increase in engagement and 25% growth in followers.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-date">2021 - 2022</div>
+                        <div class="timeline-content">
+                            <h3 class="timeline-title">SEO Optimization Projects</h3>
+                            <p class="timeline-subtitle">Website Optimization</p>
+                            <p class="timeline-description">Conducted SEO audits and implemented optimization strategies for 5+ websites, resulting in improved search rankings and organic traffic growth.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-  // Typing Effect
-  const typingText = document.querySelector('.typing');
-  const texts = [
-    "Digital Marketing Specialist",
-    "SEO & Social Media Expert",
-    "Marketing Strategy Consultant"
-  ];
-  let textIndex = 0;
-  let charIndex = 0;
-  let isDeleting = false;
-  let typingSpeed = 100;
+        <!-- Contact Section -->
+        <section id="contact" class="section contact">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">
+                        <span class="section-number">05</span>
+                        <span>Let's Connect</span>
+                    </h2>
+                    <p class="section-subtitle">Ready to elevate your digital presence? Get in touch!</p>
+                </div>
+                
+                <div class="contact-container">
+                    <div class="contact-info">
+                        <h3 class="contact-title">Get In Touch</h3>
+                        <p class="contact-description">I'm currently available for freelance projects and full-time opportunities in digital marketing.</p>
+                        
+                        <div class="contact-details">
+                            <div class="contact-item">
+                                <div class="contact-icon">
+                                    <i class="fas fa-envelope"></i>
+                                </div>
+                                <div class="contact-text">
+                                    <h4>Email</h4>
+                                    <a href="mailto:mdtouhidahamedsahid6@gmail.com">mdtouhidahamedsahid6@gmail.com</a>
+                                </div>
+                            </div>
+                            
+                            <div class="contact-item">
+                                <div class="contact-icon">
+                                    <i class="fas fa-phone"></i>
+                                </div>
+                                <div class="contact-text">
+                                    <h4>Phone</h4>
+                                    <a href="tel:01966783646">01966783646</a>
+                                </div>
+                            </div>
+                            
+                            <div class="contact-item">
+                                <div class="contact-icon">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                </div>
+                                <div class="contact-text">
+                                    <h4>Location</h4>
+                                    <p>Based in Bangladesh</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="social-links">
+                            <a href="#" class="social-link">
+                                <i class="fab fa-linkedin-in"></i>
+                            </a>
+                            <a href="#" class="social-link">
+                                <i class="fab fa-twitter"></i>
+                            </a>
+                            <a href="#" class="social-link">
+                                <i class="fab fa-facebook-f"></i>
+                            </a>
+                            <a href="#" class="social-link">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-form">
+                        <h3 class="form-title">Send a Message</h3>
+                        <form id="contactForm">
+                            <div class="form-group">
+                                <input type="text" id="name" placeholder="Your Name" required>
+                            </div>
+                            <div class="form-group">
+                                <input type="email" id="email" placeholder="Your Email" required>
+                            </div>
+                            <div class="form-group">
+                                <input type="text" id="subject" placeholder="Subject" required>
+                            </div>
+                            <div class="form-group">
+                                <textarea id="message" rows="5" placeholder="Your Message" required></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary">
+                                <span class="btn-text">Send Message</span>
+                                <div class="btn-glow"></div>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
 
-  function typeText() {
-    const currentText = texts[textIndex];
-    
-    if (isDeleting) {
-      typingText.textContent = currentText.substring(0, charIndex - 1);
-      charIndex--;
-      typingSpeed = 50;
-    } else {
-      typingText.textContent = currentText.substring(0, charIndex + 1);
-      charIndex++;
-      typingSpeed = 100;
-    }
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <a href="#" class="logo">Touhid<span class="logo-accent">.</span></a>
+                    <p class="footer-tagline">Digital Marketing Specialist</p>
+                </div>
+                
+                <div class="footer-nav">
+                    <ul class="footer-links">
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#skills">Skills</a></li>
+                        <li><a href="#services">Services</a></li>
+                        <li><a href="#portfolio">Experience</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-social">
+                    <a href="#" class="social-icon">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
+                    <a href="#" class="social-icon">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a href="#" class="social-icon">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a href="#" class="social-icon">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p class="copyright">&copy; <span id="currentYear"></span> Md. Touhid Ahmed. All Rights Reserved.</p>
+                <p class="footer-note">Digital Marketing Student at UY Lab</p>
+            </div>
+        </div>
+    </footer>
 
-    if (!isDeleting && charIndex === currentText.length) {
-      isDeleting = true;
-      setTimeout(typeText, 2000);
-      return;
-    }
-
-    if (isDeleting && charIndex === 0) {
-      isDeleting = false;
-      textIndex = (textIndex + 1) % texts.length;
-      setTimeout(typeText, 500);
-      return;
-    }
-
-    setTimeout(typeText, typingSpeed);
-  }
-
-  // Start typing effect after page loads
-  window.addEventListener('load', () => {
-    setTimeout(typeText, 1200);
-  });
-
-  // Scroll to Top Button
-  const topBtn = document.getElementById('topBtn');
-  window.addEventListener('scroll', () => {
-    if (window.pageYOffset > 300) {
-      topBtn.style.display = 'flex';
-    } else {
-      topBtn.style.display = 'none';
-    }
-  });
-
-  topBtn.addEventListener('click', () => {
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth'
-    });
-  });
-
-  // Scroll Animation
-  const revealElements = document.querySelectorAll('.reveal');
-  function revealOnScroll() {
-    revealElements.forEach(element => {
-      const elementTop = element.getBoundingClientRect().top;
-      const elementVisible = 150;
-      
-      if (elementTop < window.innerHeight - elementVisible) {
-        element.classList.add('visible');
-      }
-    });
-  }
-
-  window.addEventListener('scroll', revealOnScroll);
-  window.addEventListener('load', revealOnScroll);
-
-  // Copy to Clipboard Function
-  function copyText(text) {
-    navigator.clipboard.writeText(text).then(() => {
-      // Show notification
-      const notification = document.createElement('div');
-      notification.textContent = `Copied: ${text}`;
-      notification.style.cssText = `
-        position: fixed;
-        top: 20px;
-        right: 20px;
-        background: var(--primary);
-        color: white;
-        padding: 15px 25px;
-        border-radius: 10px;
-        box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-        z-index: 1000;
-        font-weight: 600;
-        transition: all 0.3s ease;
-        display: flex;
-        align-items: center;
-        gap: 10px;
-      `;
-      
-      const icon = document.createElement('i');
-      icon.className = 'fas fa-check-circle';
-      notification.prepend(icon);
-      
-      document.body.appendChild(notification);
-      
-      setTimeout(() => {
-        notification.style.opacity = '0';
-        notification.style.transform = 'translateY(-10px)';
-        setTimeout(() => {
-          document.body.removeChild(notification);
-        }, 300);
-      }, 2000);
-    }).catch(err => {
-      console.error('Failed to copy: ', err);
-      alert('Failed to copy text. Please try again.');
-    });
-  }
-
-  // Smooth scroll for anchor links
-  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function(e) {
-      e.preventDefault();
-      const targetId = this.getAttribute('href');
-      if (targetId === '#') return;
-      
-      const targetElement = document.querySelector(targetId);
-      if (targetElement) {
-        window.scrollTo({
-          top: targetElement.offsetTop - 80,
-          behavior: 'smooth'
-        });
-      }
-    });
-  });
-</script>
+    <script src="script.js"></script>
 </body>
 </html>
