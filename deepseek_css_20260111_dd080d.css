@@ -577,4 +577,377 @@ a {
 }
 
 .image-placeholder {
-   
+   /* Social Media Section */
+.social {
+    padding: 5rem 0;
+    background: linear-gradient(to bottom, var(--primary-dark), var(--secondary-dark));
+}
+
+.social-container {
+    display: grid;
+    grid-template-columns: 350px 1fr;
+    gap: 4rem;
+    margin-top: 3rem;
+}
+
+.profile-card {
+    background: var(--glass-bg);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--glass-border);
+    border-radius: 20px;
+    padding: 2rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.profile-card::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: var(--gradient-primary);
+    border-radius: 20px;
+    filter: blur(15px);
+    opacity: 0.2;
+    z-index: -1;
+}
+
+.photo-placeholder {
+    position: relative;
+    width: 200px;
+    height: 200px;
+    margin: 0 auto 1.5rem;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.profile-photo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+    transition: transform 0.5s ease;
+}
+
+.photo-placeholder:hover .profile-photo {
+    transform: scale(1.05);
+}
+
+.photo-frame {
+    position: absolute;
+    top: -5px;
+    left: -5px;
+    right: -5px;
+    bottom: -5px;
+    border: 2px solid transparent;
+    border-radius: 50%;
+    background: linear-gradient(45deg, var(--accent-gold), var(--accent-purple), var(--accent-blue)) border-box;
+    -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+    mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+}
+
+.photo-glow {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 50%;
+    box-shadow: inset 0 0 50px rgba(0, 217, 255, 0.3);
+}
+
+.location-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: rgba(0, 217, 255, 0.1);
+    padding: 0.5rem 1rem;
+    border-radius: 50px;
+    margin-top: 1rem;
+    border: 1px solid rgba(0, 217, 255, 0.3);
+}
+
+.location-badge i {
+    color: var(--accent-blue);
+}
+
+.profile-name {
+    font-size: 1.8rem;
+    margin: 1rem 0 0.5rem;
+    color: var(--text-primary);
+}
+
+.profile-title {
+    color: var(--accent-blue);
+    font-weight: 600;
+    margin-bottom: 0.3rem;
+}
+
+.profile-institute {
+    color: var(--text-secondary);
+    margin-bottom: 1.5rem;
+}
+
+.contact-details {
+    text-align: left;
+    margin-top: 1.5rem;
+}
+
+.contact-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+    padding: 0.8rem;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 10px;
+    transition: background 0.3s ease;
+}
+
+.contact-item:hover {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.contact-item i {
+    color: var(--accent-blue);
+    width: 20px;
+}
+
+.contact-item a {
+    color: var(--text-primary);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.contact-item a:hover {
+    color: var(--accent-blue);
+}
+
+/* Social Links Grid */
+.social-links-container {
+    background: var(--glass-bg);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--glass-border);
+    border-radius: 20px;
+    padding: 2rem;
+}
+
+.social-title {
+    font-size: 1.8rem;
+    margin-bottom: 0.5rem;
+    color: var(--text-primary);
+}
+
+.social-description {
+    color: var(--text-secondary);
+    margin-bottom: 2rem;
+}
+
+.social-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.social-card {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1.5rem;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 15px;
+    border: 1px solid transparent;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    position: relative;
+    overflow: hidden;
+}
+
+.social-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--glass-border);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.social-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 5px;
+    height: 100%;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.social-card.facebook::before {
+    background: #1877F2;
+}
+
+.social-card.linkedin::before {
+    background: #0077B5;
+}
+
+.social-card.instagram::before {
+    background: linear-gradient(45deg, #405DE6, #833AB4, #C13584, #E1306C, #FD1D1D, #F56040, #FFDC80);
+}
+
+.social-card.portfolio::before {
+    background: var(--gradient-primary);
+}
+
+.social-card:hover::before {
+    opacity: 1;
+}
+
+.social-icon {
+    width: 50px;
+    height: 50px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.3rem;
+    transition: all 0.3s ease;
+}
+
+.social-card.facebook .social-icon {
+    background: rgba(24, 119, 242, 0.1);
+    color: #1877F2;
+}
+
+.social-card.linkedin .social-icon {
+    background: rgba(0, 119, 181, 0.1);
+    color: #0077B5;
+}
+
+.social-card.instagram .social-icon {
+    background: rgba(225, 48, 108, 0.1);
+    color: #E1306C;
+}
+
+.social-card.portfolio .social-icon {
+    background: rgba(157, 78, 221, 0.1);
+    color: var(--accent-purple);
+}
+
+.social-card:hover .social-icon {
+    transform: scale(1.1);
+}
+
+.social-content {
+    flex: 1;
+}
+
+.social-content h4 {
+    font-size: 1.2rem;
+    margin-bottom: 0.3rem;
+    color: var(--text-primary);
+}
+
+.social-content p {
+    color: var(--text-secondary);
+    margin-bottom: 0.2rem;
+    font-size: 0.9rem;
+}
+
+.social-handle {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    font-weight: 500;
+}
+
+.social-arrow {
+    color: var(--text-secondary);
+    transition: transform 0.3s ease;
+}
+
+.social-card:hover .social-arrow {
+    transform: translateX(5px);
+    color: var(--accent-blue);
+}
+
+.social-badge {
+    background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
+    color: var(--primary-dark);
+    padding: 0.3rem 0.8rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+.availability {
+    background: rgba(0, 217, 255, 0.05);
+    border: 1px solid rgba(0, 217, 255, 0.2);
+    border-radius: 15px;
+    padding: 1.5rem;
+    margin-top: 2rem;
+}
+
+.availability h4 {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--accent-blue);
+    margin-bottom: 1rem;
+}
+
+.availability p {
+    margin-bottom: 0.5rem;
+    padding-left: 1.5rem;
+    position: relative;
+}
+
+.availability p::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: var(--accent-blue);
+    font-weight: bold;
+}
+
+/* Responsive Styles */
+@media (max-width: 992px) {
+    .social-container {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+    }
+    
+    .profile-card {
+        max-width: 400px;
+        margin: 0 auto;
+    }
+}
+
+@media (max-width: 768px) {
+    .social-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .photo-placeholder {
+        width: 150px;
+        height: 150px;
+    }
+}
+
+@media (max-width: 576px) {
+    .social-container {
+        padding: 0 1rem;
+    }
+    
+    .social-card {
+        flex-direction: column;
+        text-align: center;
+        padding: 1.5rem 1rem;
+    }
+    
+    .social-content {
+        text-align: center;
+    }
+}
